@@ -11,15 +11,15 @@ const game = () => {
             introScreen.classList.add("fadeOut");
             match.classList.add("fadeIn");
         });
-    }
+    };
 
     //Play match
     const playMatch = () => {
         const options = document.querySelectorAll(".options button");
         const playerHand = document.querySelector(".p-hand");
         const computerHand = document.querySelector(".c-hand");
-        const hands = document.querySelector(".hands img");
-        Object.keys(hands).forEach(hand => {
+        const hands = document.querySelectorAll(".hands img");
+        hands.forEach(hand => {
             hand.addEventListener("animationend", function() {
               this.style.animation = "";
             });
@@ -34,6 +34,8 @@ const game = () => {
                     playerHand.src = `images/${this.textContent}.png`;
                     computerHand.src = `images/${computerChoice}.png`;
                 }, 1500);
+                playerHand.src = `images/rock.png`;
+                computerHand.src = `images/rock.png`;
                 playerHand.style.animation = "shakePlayer 1.5s ease";
                 computerHand.style.animation = "shakeComputer 1.5s ease";
             });
@@ -70,7 +72,7 @@ const game = () => {
                 cScore++;
             }
         } else {
-            if(computer === 'scissors') {
+            if(computer === 'paper') {
                 winner.textContent = "Player wins";
                 pScore++;
             } else {
